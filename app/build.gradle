@@ -39,7 +39,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    compile 'com.sothree.slidinguppanel:library:3.4.0'
 
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
     // When using the BoM, you don't specify versions in Firebase library dependencies
 
     // Declare the dependency for the Firebase SDK for Google Analytics

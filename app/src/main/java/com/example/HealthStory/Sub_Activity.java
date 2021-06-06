@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.HealthStory.API.ParserData;
+import com.example.HealthStory.API.Product;
+import com.example.HealthStory.API.Search_API;
 import com.example.HealthStory.MainActivity;
 import com.example.HealthStory.R;
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Sub_Activity extends AppCompatActivity {
 
@@ -45,6 +51,50 @@ public class Sub_Activity extends AppCompatActivity {
 
         String path = intent.getStringExtra("path");
 
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("Product").removeValue();
+
+        ArrayList<String> titlearr = new ArrayList<>();
+        ArrayList<String> pricearr = new ArrayList<>();
+        ArrayList<String> brandarr = new ArrayList<>();
+        ArrayList<String> imagearr = new ArrayList<>();
+        ArrayList<String> pdtIdarr = new ArrayList<>();
+        ArrayList<Integer> indexArr = new ArrayList<>();
+
+        ParserData psd = new ParserData();
+        Product product = new Product();
+
+
+        String Out = "Product";
+        String json = null;
+
+        try {
+            json = new Search_API().execute().get();
+            titlearr = psd.TitleParserData(json);
+            pricearr = psd.PriceParser(json);
+            brandarr = psd.BrandParserData(json);
+            imagearr = psd.ImageParserData(json);
+            pdtIdarr = psd.ProductIdParserData(json);
+
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < titlearr.size(); i++) {  //index 배열 크기만큼 for
+            String prO = Out + Integer.toString(i);
+            product.setTitle(titlearr.get(i));
+            product.setPrice(pricearr.get(i));
+            product.setBrand(brandarr.get(i));
+            product.setImage(imagearr.get(i));
+            product.setProductId(pdtIdarr.get(i));
+            mDatabase.child("Product").child(prO).setValue(product);
+        }
 
         databaseReference = database.getReference(path); //db 테이블 연동         String.valueOf(path.getPath())
         Log.e("databaseFath", String.valueOf(path));
