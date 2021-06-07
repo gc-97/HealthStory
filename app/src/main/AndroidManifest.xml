@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".YouTubeActivity" />
         <activity android:name=".SelectActivity" />
-        <activity android:name=".ShoppingActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Sub_Activity" />

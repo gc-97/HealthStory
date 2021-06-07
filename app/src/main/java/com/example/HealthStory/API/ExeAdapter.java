@@ -2,7 +2,9 @@ package com.example.HealthStory.API;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,19 +122,24 @@ public class ExeAdapter extends BaseAdapter {
                            case 0:
                                Toast.makeText(mContext,arrayList.get(position).getText(),Toast.LENGTH_SHORT).show();
                                databaseReference.child(getPath()).child("squt").setValue("0");
+                               Intent squatintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://healthstory.netlify.app/domains/squat/squat"));
+                               mContext.startActivity(squatintent);
                                break;
                            case 1:
                                Toast.makeText(mContext,arrayList.get(position).getText(),Toast.LENGTH_SHORT).show();
                                databaseReference.child(getPath()).child("dumb").setValue("0");
+                               Intent dumbintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://healthstory.netlify.app/domains/curl/armcurl"));
+                               mContext.startActivity(dumbintent);
                                break;
                            case 2:
                                Toast.makeText(mContext,arrayList.get(position).getText(),Toast.LENGTH_SHORT).show();
                                databaseReference.child(getPath()).child("leg").setValue("0");
+                               Intent legintent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://healthstory.netlify.app/domains/legraise/legraise"));
+                               mContext.startActivity(legintent);
                                break;
                        }
                    }
                });
-
                bottomSheetDialog.setContentView(bottom);
                bottomSheetDialog.show();
             }
