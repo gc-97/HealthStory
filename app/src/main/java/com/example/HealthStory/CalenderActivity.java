@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.AutomaticZenRule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
@@ -20,13 +22,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CalenderActivity extends AppCompatActivity {
 
     private CalendarView calendarView; // 캘런더뷰
     private TextView txt_sample; //날짜 확인차 출력
     private TextView bott; // 하단 텍스트
+    private Button bottom_butt_select;
     private Button btn_eee; // 버튼
     private Button bottom_butt_show;
     private FirebaseDatabase database;
@@ -34,13 +39,19 @@ public class CalenderActivity extends AppCompatActivity {
         return text_date;
     }
 
+    private boolean flag=false;
+
+    public boolean isFlag() {return flag;}
+
+    public void setFlag(boolean flag) { this.flag = flag; }
+
     public void setText_date(String text_date) {
         this.text_date = text_date;
     }
 
     private String text_date;
     private String date; // date 출력
-
+    private String todaycheck;
     public void setDate(String date) {
         this.date = date;
     }
@@ -60,17 +71,39 @@ public class CalenderActivity extends AppCompatActivity {
         bottom_butt_show = (Button)findViewById(R.id.bottom_butt_show);
 
 
+        Date today = new Date();
+        SimpleDateFormat year = new SimpleDateFormat("yyyy");
+        SimpleDateFormat month = new SimpleDateFormat("MM");
+        SimpleDateFormat day = new SimpleDateFormat("dd");
+        String years = year.format(today).toString();
+        String months = month.format(today).toString();
+        String remonths = months.replace("0","");
+        String days = day.format(today).toString();
+        String redays = days.replace("0","");
+        todaycheck = years+remonths+redays;
+       long mill = today.getTime();
+        calendarView.setMaxDate(mill);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 date = Integer.toString(year) + Integer.toString(month + 1) + dayOfMonth;
                 text_date = year + "년" + (month+1) +"월" + dayOfMonth + "일";
+                if(date.compareTo(todaycheck)==0){
+                   setFlag(true);
+                   Toast.makeText(CalenderActivity.this,"Today",Toast.LENGTH_SHORT).show();
+                    setText_date(text_date);
+                    setDate(date);
+                }
+                else setFlag(false);
+
+                Toast.makeText(CalenderActivity.this,"Today아님",Toast.LENGTH_SHORT).show();
                 txt_sample.setText(text_date);
                 setText_date(text_date);
                 setDate(date);
-                btn_eee.setEnabled(true);
             }
         });
+
 
         btn_eee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +117,11 @@ public class CalenderActivity extends AppCompatActivity {
                                 (LinearLayout)findViewById(R.id.bottomSheet)
                         );
                 bott = bottomSheetView.findViewById(R.id.bottom_text);
+                bottom_butt_select = bottomSheetView.findViewById(R.id.bottom_butt_select);
                 bott.setText(getText_date());
 
+                if(isFlag()==true) bottom_butt_select.setEnabled(true);
+                    else bottom_butt_select.setEnabled(false);
                 // 운동등록 클릭하기
                 bottomSheetView.findViewById(R.id.bottom_butt_select).setOnClickListener(new View.OnClickListener() {
                     @Override

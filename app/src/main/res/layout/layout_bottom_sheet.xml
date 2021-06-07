@@ -45,7 +45,8 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorWhite"
-                android:background="@drawable/button_background"/>
+                android:background="@drawable/button_background"
+                android:enabled="false"/>
 
         <Button
             android:id="@+id/bottom_butt_show"
