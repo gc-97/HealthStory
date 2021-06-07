@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.HealthStory.API.ParserData;
 import com.example.HealthStory.API.Product;
 import com.example.HealthStory.API.Search_API;
-import com.example.HealthStory.MainActivity;
-import com.example.HealthStory.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,7 +39,7 @@ public class Sub_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sub);
 
         Intent intent = getIntent();
-        MainActivity mainActivity = new MainActivity();
+        ShoppingActivity shoppingActivity = new ShoppingActivity();
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);

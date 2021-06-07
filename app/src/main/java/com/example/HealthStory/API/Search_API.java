@@ -16,11 +16,15 @@ public class Search_API extends AsyncTask<String, Void, String> {
     private String receiveMsg;
     private int display = 50;
     private final String clientId = "G0OreXrqLebkjAbGujte";
+    String text;
 
+    public void setText(String text){
+        this.text=text;
+    }
     @Override
     protected String doInBackground(String... strings) {
         try {
-            String text = URLEncoder.encode("닭 가슴살", "UTF-8");
+            text = URLEncoder.encode("닭 가슴살", "UTF-8");
 
             String apiURL = "https://openapi.naver.com/v1/search/shop?query="+ text+ "&display=" + display +"&"; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
