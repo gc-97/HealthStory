@@ -11,16 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthStory">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".YouTubeActivity" />
         <activity android:name=".SelectActivity" />
-        <activity android:name=".ShoppingActivity"/>
+        <activity android:name=".ShoppingActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Sub_Activity" />
         <activity android:name=".SelectProduct_Activity" />

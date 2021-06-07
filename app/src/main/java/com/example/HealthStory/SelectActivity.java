@@ -22,6 +22,7 @@ public class SelectActivity extends AppCompatActivity {
     ExeAdapter adapter;
     TextView textView;
     String date;
+    Button button;
 
     public String getDate() {
         return date;
@@ -49,7 +50,14 @@ public class SelectActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-
+        button = (Button)findViewById(R.id.butt);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(SelectActivity.this,MainActivity.class);
+                startActivity(intent1);
+            }
+        });
 
 
     }

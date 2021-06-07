@@ -32,5 +32,10 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:text="선택날짜 : "/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/butt"
+        android:text="메인으로 나가기"/>
 
 </LinearLayout>
