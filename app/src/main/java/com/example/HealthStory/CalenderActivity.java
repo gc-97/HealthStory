@@ -68,6 +68,7 @@ public class CalenderActivity extends AppCompatActivity {
                 txt_sample.setText(text_date);
                 setText_date(text_date);
                 setDate(date);
+                btn_eee.setEnabled(true);
             }
         });
 
@@ -93,6 +94,7 @@ public class CalenderActivity extends AppCompatActivity {
                         mDatabase.child("selectday").setValue(getDate());
                         Intent intent = new Intent(CalenderActivity.this, SelectActivity.class);
                         intent.putExtra("date",getText_date());
+                        intent.putExtra("datepath",getDate());
                         startActivity(intent);
                     }
                 });

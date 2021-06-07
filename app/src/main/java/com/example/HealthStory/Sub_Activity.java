@@ -39,7 +39,6 @@ public class Sub_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sub);
 
         Intent intent = getIntent();
-        ShoppingActivity shoppingActivity = new ShoppingActivity();
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
