@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.AutomaticZenRule;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,8 +121,14 @@ public class CalenderActivity extends AppCompatActivity {
                 bottom_butt_select = bottomSheetView.findViewById(R.id.bottom_butt_select);
                 bott.setText(getText_date());
 
-                if(isFlag()==true) bottom_butt_select.setEnabled(true);
-                    else bottom_butt_select.setEnabled(false);
+                if(isFlag()==true) {
+                    bottom_butt_select.setEnabled(true);
+                    bottom_butt_select.setVisibility(View.VISIBLE);
+                }
+                    else {
+                    bottom_butt_select.setEnabled(false);
+                    bottom_butt_select.setVisibility(View.INVISIBLE);
+                }
                 // 운동등록 클릭하기
                 bottomSheetView.findViewById(R.id.bottom_butt_select).setOnClickListener(new View.OnClickListener() {
                     @Override

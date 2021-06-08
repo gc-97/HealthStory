@@ -41,7 +41,7 @@ public class SelectProduct_Activity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         String path = select_intent.getStringExtra("path");
-
+        //path="Select_Product"
         databaseReference = database.getReference(path);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

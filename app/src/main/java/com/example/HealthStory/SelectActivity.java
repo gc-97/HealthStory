@@ -62,7 +62,6 @@ public class SelectActivity extends AppCompatActivity {
 
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.squt),"스쿼트");
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.dumb),"덤벨컬");
-        adapter.addItem(ContextCompat.getDrawable(this,R.drawable.leg),"레그레이즈");
 
         listView.setAdapter(adapter);
         database = FirebaseDatabase.getInstance();
@@ -94,7 +93,6 @@ public class SelectActivity extends AppCompatActivity {
 
                     }
                 });
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -105,33 +103,5 @@ public class SelectActivity extends AppCompatActivity {
 
             }
         });
-
-        butt_test= (Button)findViewById(R.id.butt_test);
-        butt_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = database.getReference();
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String dumb = snapshot.child("count").child("arm").getValue(String.class);
-                        if(dumb == null) dumb="0";
-                        String leg = snapshot.child("count").child("leg").getValue(String.class);
-                        if(leg == null) leg="0";
-                        String squat = snapshot.child("count").child("squat").getValue(String.class);
-                        if(squat == null) squat="0";
-
-                        Toast.makeText(SelectActivity.this,dumb +leg + squat,Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
-
     }
 }

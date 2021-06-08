@@ -149,9 +149,21 @@ public class ExeAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder((SelectActivity) mContext);
+                String ppp = arrayList.get(position).getText();
+                String squattext = " 바벨 또는 덤벨을 들고 무릎 관절을 굽혔다 펴는 행동을 반복함으로써," +
+                        " 하반신의 대퇴사두근과 하퇴삼두근, 대둔근, 중전근 등의 근육을 성장시키는 운동";
+                String dumbtext="무산소 운동의 하나로 이두근을 키우는데 필수적인 운동"+
+                       "바벨과 덤벨의 사용이 둘 다 가능한 운동들과 같이 " +
+                        "바벨 컬도 덤벨 컬에 비해 더 많은 무게를 사용할 수 있기 때문에 이두근의 크기를 키우는데 더 유리" ;
+                switch(position) {
+                    case 0:
+                        builder.setTitle("스쿼트").setMessage(squattext);
+                        break;
 
-                String alert = arrayList.get(position).getText();
-                builder.setTitle("Hi").setMessage(alert);
+                    case 1:
+                        builder.setTitle("덤벨컬").setMessage(dumbtext);
+                        break;
+                }
 
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
