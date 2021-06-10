@@ -78,10 +78,10 @@ public class CalenderActivity extends AppCompatActivity {
         SimpleDateFormat day = new SimpleDateFormat("dd");
         String years = year.format(today).toString();
         String months = month.format(today).toString();
-        String remonths = months.replace("0","");
+        String remonths = months.replaceFirst("0","");
         String days = day.format(today).toString();
-        String redays = days.replace("0","");
-        todaycheck = years+remonths+redays;
+        //String redays = days.replaceFirst("0","");
+        todaycheck = years+remonths+days;
        long mill = today.getTime();
         calendarView.setMaxDate(mill);
 
@@ -92,13 +92,11 @@ public class CalenderActivity extends AppCompatActivity {
                 text_date = year + "년" + (month+1) +"월" + dayOfMonth + "일";
                 if(date.compareTo(todaycheck)==0){
                    setFlag(true);
-                   Toast.makeText(CalenderActivity.this,"Today",Toast.LENGTH_SHORT).show();
                     setText_date(text_date);
                     setDate(date);
                 }
                 else setFlag(false);
 
-                Toast.makeText(CalenderActivity.this,"Today아님",Toast.LENGTH_SHORT).show();
                 txt_sample.setText(text_date);
                 setText_date(text_date);
                 setDate(date);

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView drawerfire;
     private String pathtext; // 파베 경로
     private FirebaseDatabase database;
-
+    private FirebaseAuth mAuth ; //로그아웃
     public String getPathtext() {
         return pathtext;
     }
@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView drawer_name;
     private TextView drawer_email;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH)+1;
         int day = cal.get(Calendar.DAY_OF_MONTH);
         String today = Integer.toString(year) +month+day;
+
+
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -171,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         //로그아웃
         logout = (Button) findViewById(R.id.butt_logout);
